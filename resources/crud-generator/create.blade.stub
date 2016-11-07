@@ -1,0 +1,61 @@
+@extends('layouts.app')
+
+@section('title','Create %%modelName%%')
+
+@section('content')
+
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="{{route('home')}}">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>%%modelName%%</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+        </div>
+    </div>
+
+    <h3 class="page-title"> %%modelName%%
+        <small>Management</small>
+    </h3>
+
+    <div class="clearfix">
+    </div>
+
+    <div class="portlet box yellow">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>Create New %%modelName%% </div>
+            <div class="actions">
+                <a href="{{route('home')}}" class="btn btn-default btn-sm">
+                   <i class="fa fa-arrow-left"></i> Back </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            {!! Form::open(['url' => '%%routeGroup%%%%crudName%%', 'class' => 'form-horizontal']) !!}
+
+            %%formFieldsHtml%%
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-3">
+                    {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
+                </div>
+            </div>
+
+            {!! Form::close() !!}
+
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+    </div>
+
+@endsection
